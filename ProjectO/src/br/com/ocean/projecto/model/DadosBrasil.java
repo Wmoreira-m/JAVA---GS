@@ -2,6 +2,7 @@ package br.com.ocean.projecto.model;
 
 public class DadosBrasil {
 
+    //Atributos da Classe Dados Brasil, onde são dados que drone coleta.
     private String id;
     private String taxaResiduo;
     private String phAgua;
@@ -10,9 +11,12 @@ public class DadosBrasil {
     private String qualidadeAr;
     private String temperaturaAgua;
 
+
+    //Construtor padrão caso não haja detecções de nada.
     public DadosBrasil() {
     }
 
+    //Construtor passando todos os atributos.
     public DadosBrasil(String id, String taxaResiduo, String phAgua, String pescaIlegal, String regiaoLixo, String qualidadeAr, String temperaturaAgua) {
         this.id = id;
         this.taxaResiduo = taxaResiduo;
@@ -23,6 +27,8 @@ public class DadosBrasil {
         this.temperaturaAgua = temperaturaAgua;
     }
 
+
+    //Getters e Setters.
     public String getId() {
         return id;
     }

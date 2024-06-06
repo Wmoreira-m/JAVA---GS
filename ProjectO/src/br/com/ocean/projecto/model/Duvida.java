@@ -5,13 +5,18 @@ import java.util.List;
 import java.util.UUID;
 
 public class Duvida {
+
+    //Atributo como uma lista para armazer informações de duvidas e investimentos realizados.
     private List<Duvida> listaDuvidas;
+
+    //Atributos da Classe Duvida.
     private String id;
     private String email;
     private String nome;
     private String telefone;
     private String comentario;
 
+    //Construtor com todos os atributos.
     public Duvida(String id, String email, String nome, String telefone, String comentario) {
         this.id = id;
         this.email = email;
@@ -19,19 +24,23 @@ public class Duvida {
         this.telefone = telefone;
         this.comentario = comentario;
     }
+
+
+    //Um construtor onde é criado uma lista com array, instânciando.
     public Duvida() {
         listaDuvidas = new ArrayList<>();
     }
 
+
+    //Método registrar duvida, onde é gerado um ID aleatório e onde as duvidas são registradas e adicionadas a lista.
     public void registrarDuvida(String nome, String email, String telefone, String comentario) {
         String id = UUID.randomUUID().toString(); // Gera um ID aleatório
         Duvida duvida = new Duvida(id, email, nome, telefone, comentario);
         listaDuvidas.add(duvida);
     }
 
-
+    //Método exibir duvidas, onde é exibido todas as duvidas registradas.
     public String exibirDuvidas() {
-        // Exibir todas as dúvidas registradas
         StringBuilder mensagem = new StringBuilder();
         for (Duvida duvida : listaDuvidas) {
             mensagem.append(duvida.toString()).append("\n\n");
@@ -39,6 +48,7 @@ public class Duvida {
         return mensagem.toString();
     }
 
+    //Método de sobrescrita, é implementado um método de uma classe já existente.
     @Override
     public String toString() {
         return "ID: " + id + "\n" +
@@ -48,6 +58,7 @@ public class Duvida {
                 "Comentário: " + comentario + "\n";
     }
 
+    //Getters e Setters
     public String getId() {
         return id;
     }

@@ -8,35 +8,44 @@ import java.awt.*;
 public class Main {
     public static void main(String[] args) {
 
+        //Instânciando Investimento e Duvida para começarem vazios e serem preenchido todas as vezes que for desejado pelo cliente.
         Duvida duvida = new Duvida();
         Investimento investimento = new Investimento();
+
+        //Instânciando o Drone com seus possíveis dados.
         Drone drone = new Drone("G4F5F4", "Dronex44", "vontMax", "2021");
+
+        //Instânciando Dados Brasil e Dados Estados Unidos com as informações pegas.
         DadosBrasil dadosBrasil = new DadosBrasil("DSF564", "500", "6.8", "15%", "25", "Moderado", "28°C");
         DadosEstadosUnidos dadosEstadosUnidos = new DadosEstadosUnidos("D4F68G4DF","1.5","7.2","10%","35","Moderado","25°C");
 
+        //SENHA PARA O ACESSO A "ÁREA ADMIN"
         String senha = "444";
 
-        String caminhoImagem = "br/com/ocean/projecto/view/imagem.png";
+        //Criando um caminho para a imagem e pegando seu endereço.
+        String caminhoImagem = "br/com/ocean/projecto/img/imagem.png";
 
         // Carrega a imagem
         ImageIcon iconeOriginal = new ImageIcon(Main.class.getClassLoader().getResource(caminhoImagem));
 
         // Redimensiona a imagem para um tamanho desejado
-        int larguraNova = 40; // largura desejada
-        int alturaNova = 40; // altura desejada
+        int larguraNova = 40;
+        int alturaNova = 40;
         Image imagemRedimensionada = iconeOriginal.getImage().getScaledInstance(larguraNova, alturaNova, Image.SCALE_SMOOTH);
 
         // Cria um novo ImageIcon com a imagem redimensionada
         ImageIcon iconeRedimensionado = new ImageIcon(imagemRedimensionada);
 
-        // Exibe a mensagem e a imagem em um JOptionPane
+        // Exibe a mensagem de Bem-Vindo e a imagem.
         JOptionPane.showMessageDialog(null, "Bem-vindo à plataforma ProjectO.", "ProjectO", JOptionPane.INFORMATION_MESSAGE, iconeRedimensionado);
 
 
+        //Começando o while já TRUE.
         boolean rodar = true;
 
+        //Código para funcionamento.
         while (rodar) {
-            String opcoes = JOptionPane.showInputDialog(null, "Escolha sua opção de preferência \n 1 - Dados e Informações sobre oceanos e regiões \n 2 - Realizar investimento \n 3 - Registrar uma duvida \n 4 - Área Usuário \n 5 - Sair");
+            String opcoes = JOptionPane.showInputDialog(null, "Escolha sua opção de preferência \n 1 - Dados e Informações sobre oceanos e regiões \n 2 - Realizar investimento \n 3 - Registrar uma duvida \n 4 - Área admin \n 5 - Sair");
             switch (opcoes) {
                 case "1":
                     String opcoesRegiao = JOptionPane.showInputDialog(null, "Deseja ver os dados de qual região? \n 1 - Brasil \n 2 - Estados Unidos \n 3 - Voltar");
@@ -97,7 +106,7 @@ public class Main {
                                     // Registrar investimento
                                     investimento.registrarInvestimento(nome, email, cpfCnpj, valorInvestimento);
 
-                                    JOptionPane.showMessageDialog(null, nome.toUpperCase() + ", seu investimento foi realizado com sucesso.");
+                                    JOptionPane.showMessageDialog(null, nome.toUpperCase() + " seu investimento foi realizado com sucesso.");
                                 }
                             }
                             break;
@@ -122,7 +131,7 @@ public class Main {
                                     double valorInvestimento = Double.parseDouble(valorInvestimentoString);
 
                                     // Registrar investimento
-                                    investimento.registrarInvestimentoAnonimo(valorInvestimento);
+                                    investimento.registrarInvestimento(valorInvestimento);
 
                                     JOptionPane.showMessageDialog(null, "Seu investimento foi realizado com sucesso.");
 
@@ -152,8 +161,15 @@ public class Main {
                         String telefone = telefoneField.getText();
                         String comentario = comentarioField.getText();
 
-                        duvida.registrarDuvida(nome, email, telefone, comentario);
-                        JOptionPane.showMessageDialog(null, nome.toUpperCase() + " sua dúvida foi registrada com sucesso.");
+                        if(nome.isEmpty() || email.isEmpty() || telefone.isEmpty() || comentario.isEmpty()){
+                            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.");
+
+                        }else {
+
+                            duvida.registrarDuvida(nome, email, telefone, comentario);
+                            JOptionPane.showMessageDialog(null, nome.toUpperCase() + " sua dúvida foi registrada com sucesso.");
+                        }
+
                     } else {
                         JOptionPane.showMessageDialog(null, "Nenhuma dúvida registrada.");
                     }
