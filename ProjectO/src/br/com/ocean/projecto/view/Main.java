@@ -16,8 +16,8 @@ public class Main {
         Drone drone = new Drone("G4F5F4", "Dronex44", "vontMax", "2021");
 
         //Instânciando Dados Brasil e Dados Estados Unidos com as informações pegas.
-        DadosBrasil dadosBrasil = new DadosBrasil("DSF564", "500", "6.8", "15%", "25", "Moderado", "28°C");
-        DadosEstadosUnidos dadosEstadosUnidos = new DadosEstadosUnidos("D4F68G4DF","1.5","7.2","10%","35","Moderado","25°C");
+        DadosBrasil dadosBrasil = new DadosBrasil("DSF564", 500, 6.8, "15%", 25, "Moderado", "28°C");
+        DadosEstadosUnidos dadosEstadosUnidos = new DadosEstadosUnidos("D4F68G4DF",1.5,7.2,"10%",35,"Moderado","25°C");
 
         //SENHA PARA O ACESSO A "ÁREA ADMIN"
         String senha = "444";

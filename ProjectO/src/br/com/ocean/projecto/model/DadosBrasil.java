@@ -4,10 +4,10 @@ public class DadosBrasil {
 
     //Atributos da Classe Dados Brasil, onde são dados que drone coleta.
     private String id;
-    private String taxaResiduo;
-    private String phAgua;
+    private double taxaResiduo;
+    private double phAgua;
     private String pescaIlegal;
-    private String regiaoLixo;
+    private double regiaoLixo;
     private String qualidadeAr;
     private String temperaturaAgua;
 
@@ -17,7 +17,7 @@ public class DadosBrasil {
     }
 
     //Construtor passando todos os atributos.
-    public DadosBrasil(String id, String taxaResiduo, String phAgua, String pescaIlegal, String regiaoLixo, String qualidadeAr, String temperaturaAgua) {
+    public DadosBrasil(String id, double taxaResiduo, double phAgua, String pescaIlegal, double regiaoLixo, String qualidadeAr, String temperaturaAgua) {
         this.id = id;
         this.taxaResiduo = taxaResiduo;
         this.phAgua = phAgua;
@@ -37,19 +37,13 @@ public class DadosBrasil {
         this.id = id;
     }
 
-    public String getTaxaResiduo() {
-        return taxaResiduo;
-    }
 
-    public void setTaxaResiduo(String taxaResiduo) {
-        this.taxaResiduo = taxaResiduo;
-    }
 
-    public String getPhAgua() {
+    public double getPhAgua() {
         return phAgua;
     }
 
-    public void setPhAgua(String phAgua) {
+    public void setPhAgua(double phAgua) {
         this.phAgua = phAgua;
     }
 
@@ -61,11 +55,19 @@ public class DadosBrasil {
         this.pescaIlegal = pescaIlegal;
     }
 
-    public String getRegiaoLixo() {
+    public double getTaxaResiduo() {
+        return taxaResiduo;
+    }
+
+    public void setTaxaResiduo(double taxaResiduo) {
+        this.taxaResiduo = taxaResiduo;
+    }
+
+    public double getRegiaoLixo() {
         return regiaoLixo;
     }
 
-    public void setRegiaoLixo(String regiaoLixo) {
+    public void setRegiaoLixo(double regiaoLixo) {
         this.regiaoLixo = regiaoLixo;
     }
 
