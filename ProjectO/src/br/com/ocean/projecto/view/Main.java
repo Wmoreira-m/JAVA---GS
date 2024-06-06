@@ -36,7 +36,7 @@ public class Main {
         boolean rodar = true;
 
         while (rodar) {
-            String opcoes = JOptionPane.showInputDialog(null, "Escolha sua opção de preferência \n 1 - Dados e Informações sobre oceanos e regiões \n 2 - Realizar investimento \n 3 - Registrar uma duvida \n 4 - Área Usuário");
+            String opcoes = JOptionPane.showInputDialog(null, "Escolha sua opção de preferência \n 1 - Dados e Informações sobre oceanos e regiões \n 2 - Realizar investimento \n 3 - Registrar uma duvida \n 4 - Área Usuário \n 5 - Sair");
             switch (opcoes) {
                 case "1":
                     String opcoesRegiao = JOptionPane.showInputDialog(null, "Deseja ver os dados de qual região? \n 1 - Brasil \n 2 - Estados Unidos \n 3 - Voltar");
@@ -67,97 +67,117 @@ public class Main {
                     String opcoesInvestimento = JOptionPane.showInputDialog(null, "Qual a opção de sua preferência para realizar o investimento em nossa plataforma \n 1 - Comum \n 2 - Anônimo \n 3 - Voltar");
                     switch (opcoesInvestimento) {
                         case "1":
-                            JTextField nomeField = new JTextField();
-                            JTextField emailField = new JTextField();
-                            JTextField cpf_cnpjlField = new JTextField();
-                            JTextField valorlField = new JTextField();
+                            JTextField nomeInvestirField = new JTextField();
+                            JTextField emailInvestirField = new JTextField();
+                            JTextField cpfCnpjField = new JTextField();
+                            JTextField valorField = new JTextField();
 
                             Object[] investidorComum = {
-                                    "Digite seu nome:", nomeField,
-                                    "Digite seu email:", emailField,
-                                    "Digite seu CPF/CNPJ:", cpf_cnpjlField,
-                                    "Digite o valor do investimeto:", valorlField,
+                                    "Digite seu nome:", nomeInvestirField,
+                                    "Digite seu email:", emailInvestirField,
+                                    "Digite seu CPF/CNPJ:", cpfCnpjField,
+                                    "Digite o valor do investimento:", valorField,
                             };
 
                             int registroInvestimento = JOptionPane.showConfirmDialog(null, investidorComum, "ProjectO - Investimento", JOptionPane.OK_CANCEL_OPTION);
 
                             if (registroInvestimento == JOptionPane.OK_OPTION) {
-                                String nome = nomeField.getText();
-                                String email = emailField.getText();
-                                String cpf_cnpj = cpf_cnpjlField.getText();
-                                double valor = Double.parseDouble(valorlField.getText());
+                                String nome = nomeInvestirField.getText();
+                                String email = emailInvestirField.getText();
+                                String cpfCnpj = cpfCnpjField.getText();
+                                String valorInvestimentoString = valorField.getText();
 
-                                investimento.registrarInvestimento(nome, email, cpf_cnpj, valor);
-                                JOptionPane.showMessageDialog(null, nome.toUpperCase() + " seu investimento foi realizado com sucesso.");
-                            } else {
-                                JOptionPane.showMessageDialog(null,"Nenhum Investimento realizado.");
+                                if (nome.isEmpty() || email.isEmpty() || cpfCnpj.isEmpty() || valorInvestimentoString.isEmpty()) {
+                                    JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.");
+                                } else {
+
+                                    // Converta o valor para double
+                                    double valorInvestimento = Double.parseDouble(valorInvestimentoString);
+
+                                    // Registrar investimento
+                                    investimento.registrarInvestimento(nome, email, cpfCnpj, valorInvestimento);
+
+                                    JOptionPane.showMessageDialog(null, nome.toUpperCase() + ", seu investimento foi realizado com sucesso.");
+                                }
                             }
                             break;
 
                         case "2":
-                            JTextField valorAnonimolField = new JTextField();
+                            JTextField valorAnonimoField = new JTextField();
 
+                            Object[] investidorAnonimo = {
+                                    "Digite o valor do investimento:", valorAnonimoField
+                            };
 
-                                   double valor = JOptionPane.showInputDialog(null,"Digite o valor do investimeto:");
+                            int registroInvestimentoAnonimo = JOptionPane.showConfirmDialog(null, investidorAnonimo, "ProjectO - Investimento", JOptionPane.OK_CANCEL_OPTION);
 
+                            if (registroInvestimentoAnonimo == JOptionPane.OK_OPTION) {
+                                String valorInvestimentoString = valorAnonimoField.getText();
 
-                            int registroInvestimentoAnonimo = JOptionPane.showConfirmDialog(null, investidorComum, "ProjectO - Investimento", JOptionPane.OK_CANCEL_OPTION);
+                                if (valorInvestimentoString.isEmpty()) {
+                                    JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos.");
+                                } else {
 
-                            if (registroInvestimento == JOptionPane.OK_OPTION) {
+                                    // Converta o valor para double
+                                    double valorInvestimento = Double.parseDouble(valorInvestimentoString);
 
-                                double valorAnonimo = Double.parseDouble(valorlField.getText());
+                                    // Registrar investimento
+                                    investimento.registrarInvestimentoAnonimo(valorInvestimento);
 
-                                investimento.registrarInvestimentoAnonimo(valorAnonimo);
-                                JOptionPane.showMessageDialog(null, "Seu investimento foi realizado com sucesso.");
-                            } else {
-                                JOptionPane.showMessageDialog(null,"Nenhum Investimento realizado.");
+                                    JOptionPane.showMessageDialog(null, "Seu investimento foi realizado com sucesso.");
+
+                                }
                             }
                             break;
                     }
                     break;
                 case "3":
-                        JTextField nomeField = new JTextField();
-                        JTextField emailField = new JTextField();
-                        JTextField telefoneField = new JTextField();
-                        JTextField comentarioField = new JTextField();
+                    JTextField nomeField = new JTextField();
+                    JTextField emailField = new JTextField();
+                    JTextField telefoneField = new JTextField();
+                    JTextField comentarioField = new JTextField();
 
-                        Object[] areaduvida = {
-                                "Digite seu nome:", nomeField,
-                                "Digite seu email:", emailField,
-                                "Digite seu telefone:", telefoneField,
-                                "Digite o seu comentário:", comentarioField,
-                        };
+                    Object[] areaduvida = {
+                            "Digite seu nome:", nomeField,
+                            "Digite seu email:", emailField,
+                            "Digite seu telefone:", telefoneField,
+                            "Digite o seu comentário:", comentarioField,
+                    };
 
-                        int registroDuvida = JOptionPane.showConfirmDialog(null, areaduvida, "ProjectO - Registrar Dúvida", JOptionPane.OK_CANCEL_OPTION);
+                    int registroDuvida = JOptionPane.showConfirmDialog(null, areaduvida, "ProjectO - Registrar Dúvida", JOptionPane.OK_CANCEL_OPTION);
 
-                        if (registroDuvida == JOptionPane.OK_OPTION) {
-                            String nome = nomeField.getText();
-                            String email = emailField.getText();
-                            String telefone = telefoneField.getText();
-                            String comentario = comentarioField.getText();
+                    if (registroDuvida == JOptionPane.OK_OPTION) {
+                        String nome = nomeField.getText();
+                        String email = emailField.getText();
+                        String telefone = telefoneField.getText();
+                        String comentario = comentarioField.getText();
 
-                            duvida.registrarDuvida(nome, email, telefone, comentario);
-                            JOptionPane.showMessageDialog(null, nome.toUpperCase() + " sua dúvida foi registrada com sucesso.");
-                        } else {
-                            JOptionPane.showMessageDialog(null,"Nenhuma dúvida registrada.");
-                        }
-                        break;
+                        duvida.registrarDuvida(nome, email, telefone, comentario);
+                        JOptionPane.showMessageDialog(null, nome.toUpperCase() + " sua dúvida foi registrada com sucesso.");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Nenhuma dúvida registrada.");
+                    }
+                    break;
                 case "4":
-                    String acesso = JOptionPane.showInputDialog(null,"Digite a senha para ter acesso à área do usuário.");
-                    if(acesso.equals(senha)){
-                        String opcoesUser = JOptionPane.showInputDialog(null,"Digite uma das opções de sua escolha \n 1 - Registro de Dúvidas \n 2 - Registro de Investimentos");
-                        switch(opcoesUser){
+                    String acesso = JOptionPane.showInputDialog(null, "Digite a senha para ter acesso à área do usuário.");
+                    if (acesso.equals(senha)) {
+                        String opcoesUser = JOptionPane.showInputDialog(null, "Digite uma das opções de sua escolha \n 1 - Registro de Dúvidas \n 2 - Registro de Investimentos");
+                        switch (opcoesUser) {
                             case "1":
                                 JOptionPane.showMessageDialog(null, duvida.exibirDuvidas(), "ProjectO - Dúvidas Registradas", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                             case "2":
-                                JOptionPane.showMessageDialog(null, investimento.exibirInvestimentos(), "ProjectO - Dúvidas Registradas", JOptionPane.INFORMATION_MESSAGE);
+
+                                JOptionPane.showMessageDialog(null, investimento.exibirInvestimentos(), "ProjectO - Investimentos Comuns", JOptionPane.INFORMATION_MESSAGE);
                                 break;
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null,"Senha Incorreta.");
+                        JOptionPane.showMessageDialog(null, "Senha Incorreta.");
                     }
                     break;
+                case "5":
+                    rodar = false;
+                    JOptionPane.showMessageDialog(null, "A plataforma ProjectO agradece pela sua interação.", "ProjectO", JOptionPane.INFORMATION_MESSAGE, iconeRedimensionado);
             }
         }
     }

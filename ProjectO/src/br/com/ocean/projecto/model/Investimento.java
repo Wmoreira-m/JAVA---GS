@@ -8,10 +8,9 @@ public class Investimento {
 
     private List<Investimento> listaInvestimentos;
     private String id;
-    private boolean anonimo;
-    private String nome;
-    private String email;
-    private String cpf_cnpj;
+    private String nome = "Anônimo";
+    private String email = "Anônimo";
+    private String cpf_cnpj = "Anônimo";
     private double valor;
 
 
@@ -32,22 +31,21 @@ public class Investimento {
         listaInvestimentos = new ArrayList<>();
     }
     public void registrarInvestimento(String nome, String email, String cpf_cnpj, double valor) {
-        if (!anonimo) {
-            String id = UUID.randomUUID().toString();
-            Investimento investimento = new Investimento(id, nome, email, cpf_cnpj, valor);
-            listaInvestimentos.add(investimento);
-        }
+
+        String id = UUID.randomUUID().toString();
+        Investimento investimento = new Investimento(id, nome, email, cpf_cnpj, valor);
+        listaInvestimentos.add(investimento);
+
     }
 
     public void registrarInvestimentoAnonimo(double valor){
-        if (anonimo){
-            id = UUID.randomUUID().toString();
-            Investimento investimento = new Investimento(id, valor);
-            listaInvestimentos.add(investimento);
-        }
+        id = UUID.randomUUID().toString();
+        Investimento investimento = new Investimento(id, valor);
+        listaInvestimentos.add(investimento);
     }
 
     public String exibirInvestimentos() {
+
         // Exibir todas as dúvidas registradas
         StringBuilder mensagem = new StringBuilder();
         for (Investimento investimento : listaInvestimentos) {
@@ -70,14 +68,6 @@ public class Investimento {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public boolean isAnonimo() {
-        return anonimo;
-    }
-
-    public void setAnonimo(boolean anonimo) {
-        this.anonimo = anonimo;
     }
 
     public String getNome() {
